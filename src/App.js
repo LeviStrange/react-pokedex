@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 
 import { CardList } from './components/card-list/card-list.component'  
+import { SearchBox } from './components/search-box/search-box.component'
 
 class App extends Component {
   constructor() {
     super();
-    // If online - grabs jsonplaceholder api
-    // this.state = {
-    //   ninjas: []
-    // }
-
     // If offline application still works
     // as i have made it fail gracefully
     this.state = {
@@ -31,10 +27,10 @@ class App extends Component {
           name: 'Ninja Mcgee',
           id: 4
         },
-      ]
+      ],
+      searchField: ''
     }
     
-   
   }
 
   componentDidMount() {
@@ -45,9 +41,21 @@ class App extends Component {
   }
 
   render() {
+    const { ninjas, searchField} = this.state;
+    const filterNinjas = ninjas.filter(ninja =>
+      ninja.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+
     return (
       <div className="App">
-        <CardList ninjas={this.state.ninjas}/>
+        <h1>NINJAS</h1>
+        <SearchBox 
+          placeholder="Ninjas for hire"
+          handleChange={ e =>
+            this.setState({searchField: e.target.value})
+          }
+        />
+        <CardList ninjas={filterNinjas}/>
       </div>
     );
   }
