@@ -28,12 +28,21 @@ class App extends Component {
           id: 4
         },
       ],
-      searchField: ''
+      searchField: '',
+      pokemonList: []
     }
     
   }
 
   componentDidMount() {
+    let pokeapi = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150'
+    fetch(pokeapi)
+    .then(response => response.json())
+    .then(data => this.setState({pokemonList: data.results}) )
+    // .then(data => {
+    //   console.log(data.results)
+    // })
+
     let api = 'https://jsonplaceholder.typicode.com/users'
     fetch(api)
     .then(response => response.json())
@@ -41,21 +50,26 @@ class App extends Component {
   }
 
   render() {
-    const { ninjas, searchField} = this.state;
+    const { ninjas, pokemonList, searchField} = this.state;
     const filterNinjas = ninjas.filter(ninja =>
       ninja.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+   
+    const filterPokemon = pokemonList.filter(pokemon =>
+      pokemon.name.toLowerCase().includes(searchField.toLowerCase())
     );
 
     return (
       <div className="App">
-        <h1>NINJAS</h1>
+        <h1>Pokemon</h1>
         <SearchBox 
           placeholder="Ninjas for hire"
           handleChange={ e =>
             this.setState({searchField: e.target.value})
           }
         />
-        <CardList ninjas={filterNinjas}/>
+        <CardList pokemonList={filterPokemon}/>
+        
       </div>
     );
   }
