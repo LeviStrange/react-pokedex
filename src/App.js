@@ -50,10 +50,10 @@ class App extends Component {
   }
 
   render() {
-    const { ninjas, pokemonList, searchField} = this.state;
-    const filterNinjas = ninjas.filter(ninja =>
-      ninja.name.toLowerCase().includes(searchField.toLowerCase())
-    );
+    const { pokemonList, searchField} = this.state;
+    // const filterNinjas = ninjas.filter(ninja =>
+    //   ninja.name.toLowerCase().includes(searchField.toLowerCase())
+    // );
    
     const filterPokemon = pokemonList.filter(pokemon =>
       pokemon.name.toLowerCase().includes(searchField.toLowerCase())
@@ -63,7 +63,7 @@ class App extends Component {
       <div className="App">
         <h1>Pokemon</h1>
         <SearchBox 
-          placeholder="Ninjas for hire"
+          placeholder="Kanto Pokemon"
           handleChange={ e =>
             this.setState({searchField: e.target.value})
           }
