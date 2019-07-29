@@ -24,9 +24,18 @@
 }
 
 h1 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Press Start 2P', cursive;
   font-size: 72px;
-  color: #61dafb;
+  color: #eee;
+}
+
+p {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+}
+
+input {
+  font-family: 'Press Start 2P', cursive;
 }
 
 @keyframes App-logo-spin {

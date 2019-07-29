@@ -35,25 +35,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let pokeapi = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150'
+    let pokeapi = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151'
     fetch(pokeapi)
     .then(response => response.json())
     .then(data => this.setState({pokemonList: data.results}) )
-    // .then(data => {
-    //   console.log(data.results)
-    // })
-
-    let api = 'https://jsonplaceholder.typicode.com/users'
-    fetch(api)
-    .then(response => response.json())
-    .then(users => this.setState({ninjas: users}) )
   }
 
   render() {
     const { pokemonList, searchField} = this.state;
-    // const filterNinjas = ninjas.filter(ninja =>
-    //   ninja.name.toLowerCase().includes(searchField.toLowerCase())
-    // );
    
     const filterPokemon = pokemonList.filter(pokemon =>
       pokemon.name.toLowerCase().includes(searchField.toLowerCase())
@@ -61,9 +50,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Original 150 Pokedex</h1>
+        <h1>Original 151 Pokedex</h1>
         <SearchBox 
-          placeholder="Kanto Pokemon"
+          placeholder="Search Kanto Pokemon"
           handleChange={ e =>
             this.setState({searchField: e.target.value})
           }
