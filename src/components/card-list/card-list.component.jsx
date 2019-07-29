@@ -10,6 +10,6 @@ export const CardList = props => (
     //     ))}
     // </div>
     <div className='card-list'>
-        {props.pokemonList.map((pokemon,i) =>  <Card key={ i } pokemon={pokemon}/> )}
+        {props.pokemonList.map((pokemon,i) =>  <Card key={i}  dexNum={i+1} pokemon={pokemon} /> )}
     </div>
 )
